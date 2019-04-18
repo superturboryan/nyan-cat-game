@@ -1,4 +1,4 @@
-let GAME_WIDTH = 375
+let GAME_WIDTH = 750
 let GAME_HEIGHT = 500
 
 let ENEMY_WIDTH = 75

@@ -2,9 +2,14 @@ class Engine {
 
    gameLoop = () => {
 
-      let currentTime = new Date()
+      let loopTime = new Date()
 
-      label.update(`${currentTime - this.startTime}`)
+      let currentTime = loopTime - this.startTime
+
+      //Update timer label created in main
+      label.update(`${Math.floor((loopTime - this.startTime) / 1000)}`)
+
+      console.log(currentTime)
 
       if (this.lastFrame === undefined) this.lastFrame = (new Date).getTime()
       let timeDiff = (new Date).getTime() - this.lastFrame
@@ -12,9 +17,11 @@ class Engine {
       this.enemies.forEach(enemy => {
          enemy.update(timeDiff)
       })
+
       this.enemies = this.enemies.filter(enemy => {
          return !enemy.destroyed
       })
+
       while (this.enemies.length < MAX_ENEMIES) {
          let spot = nextEnemySpot(this.enemies)
          this.enemies.push(new Enemy(this.root, spot))
@@ -42,6 +49,9 @@ class Engine {
       return collision;
    }
 
+   restartTimer = () => {
+      this.startTime = new Date();
+   }
 
    constructor(theRoot) {
       this.root = theRoot

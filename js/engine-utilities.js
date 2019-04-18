@@ -29,3 +29,13 @@ let addBackground = root => {
    root.append(whiteBox)
 }
 
+let updateScoreLabel = () => {
+   scoreLabel.innerText = `Enemy count: ${MAX_ENEMIES}`
+}
+
+let incrementEnemyCount = () => {
+   if (MAX_ENEMIES === 5) return;
+   MAX_ENEMIES++
+   updateScoreLabel();
+}
+
