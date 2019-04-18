@@ -1,5 +1,11 @@
 class Engine {
+
    gameLoop = () => {
+
+      let currentTime = new Date()
+
+      label.update(`${currentTime - this.startTime}`)
+
       if (this.lastFrame === undefined) this.lastFrame = (new Date).getTime()
       let timeDiff = (new Date).getTime() - this.lastFrame
       this.lastFrame = (new Date).getTime()
@@ -20,6 +26,8 @@ class Engine {
       }
       setTimeout(this.gameLoop, 20)
    }
+
+
    isPlayerDead = () => {
       let collision = false;
       this.enemies.forEach(enemy => {
@@ -33,11 +41,14 @@ class Engine {
       })
       return collision;
    }
+
+
    constructor(theRoot) {
       this.root = theRoot
       this.player = new Player(this.root)
       this.enemies = []
       addBackground(this.root)
+      this.startTime = new Date();
    }
 }
 

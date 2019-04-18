@@ -19,6 +19,6 @@ class Enemy {
       this.domElement.style.top = this.y + "px"
       this.domElement.style.zIndex = 5
       theRoot.appendChild(this.domElement)
-      this.speed = Math.random() / 2 + 0.25
+      this.speed = Math.random() / 2 + 0.1 //originally +0.25
    }
 } 
