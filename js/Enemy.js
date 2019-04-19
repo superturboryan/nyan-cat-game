@@ -1,5 +1,5 @@
 class Enemy {
-   moveVertical(timeDiff) {
+   moveVerticalDown(timeDiff) {
       this.y = this.y + timeDiff * this.speed
       this.domElement.style.top = this.y + "px"
       if (this.y > GAME_HEIGHT) {
@@ -7,11 +7,22 @@ class Enemy {
          this.destroyed = true
       }
    }
+
+   moveVerticalUp(timeDiff) {
+      this.y = this.y - timeDiff * this.speed
+      this.domElement.style.top = this.y + "px"
+      if (this.y < 0) {
+         this.root.removeChild(this.domElement)
+         this.destroyed = true
+      }
+   }
+
    constructor(theRoot, enemySpot) {
       this.root = theRoot
       this.spot = enemySpot
+      this.direction = Math.round(Math.random())
       this.x = enemySpot * ENEMY_WIDTH
-      this.y = -ENEMY_HEIGHT
+      this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT
       this.domElement = document.createElement("img")
       this.domElement.src = "images/enemy.png"
       this.domElement.style.position = "absolute"

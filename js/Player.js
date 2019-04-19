@@ -4,9 +4,9 @@ class Player {
    //Parameter is the dom element to which the player node is added
    constructor(root) {
       //Starting x position
-      this.x = 4 * PLAYER_WIDTH
+      this.x = 0
       //Starting y position
-      let y = GAME_HEIGHT - PLAYER_HEIGHT - 10
+      let y = GAME_HEIGHT / 2 // Originally GAME_HEIGHT - PLAYER_HEIGHT - 10
       this.y = y
       //Player dom node
       this.domElement = document.createElement("img")

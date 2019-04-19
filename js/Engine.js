@@ -6,7 +6,7 @@ class Engine {
       this.enemies = []
       addBackground(this.root)
       this.startTime = new Date();
-      this.pause = false;
+      this.pause = true;
    }
 
    gameLoop = () => {
@@ -18,13 +18,18 @@ class Engine {
       let loopTime = new Date()
 
       //Update timer label created in main
-      label.update(`Time: ${Math.floor((loopTime - this.startTime) / 1000)}s`)
-
+      timeLabel.update(`Time: ${Math.floor((loopTime - this.startTime) / 1000)}s`)
+      //Get difference between last frame
       if (this.lastFrame === undefined) this.lastFrame = (new Date).getTime()
       let timeDiff = (new Date).getTime() - this.lastFrame
       this.lastFrame = (new Date).getTime()
       this.enemies.forEach(enemy => {
-         enemy.moveVertical(timeDiff)
+         if (enemy.direction) {
+            enemy.moveVerticalDown(timeDiff)
+         }
+         else {
+            enemy.moveVerticalUp(timeDiff)
+         }
       })
 
       this.enemies = this.enemies.filter(enemy => {
@@ -40,7 +45,7 @@ class Engine {
          window.alert("Game over")
          return
       }
-      setTimeout(this.gameLoop, 20)
+      setTimeout(this.gameLoop, 5)
    }
 
 

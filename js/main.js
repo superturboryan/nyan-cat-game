@@ -2,14 +2,19 @@ let mainDiv = document.getElementById('app')
 
 let gameEngine = new Engine(mainDiv)
 
-let scoreLabel = document.getElementById('scoreLabel')
+let scoreLabel = document.getElementById('enemyLabel')
 
-let label = new Text(mainDiv, 600, 25);
+let startLabel = new Text(mainDiv, 250, GAME_HEIGHT / 2, 60)
+startLabel.update("Press space to begin!")
+
+let timeLabel = new Text(mainDiv, 850, 25, 30);
 
 let interval;
 
 let startGame = () => {
+   startLabel.update("")
    clearInterval(interval)
+   gameEngine.pause = false;
    MAX_ENEMIES = 1;
    updateScoreLabel();
    gameEngine.restartTimer();
@@ -21,7 +26,7 @@ let pauseGame = () => {
    gameEngine.pause = !gameEngine.pause
 
    if (!gameEngine.pause) {
-      setTimeout(gameEngine.gameLoop, 20)
+      setTimeout(gameEngine.gameLoop, 5)
    }
 }
 
@@ -39,7 +44,7 @@ let keydownHandler = event => {
       gameEngine.player.moveDown()
    }
    if (event.code === "Space") {
-      startGame()
+      if (gameEngine.pause) startGame()
    }
    if (event.code === "KeyP") {
       pauseGame()
