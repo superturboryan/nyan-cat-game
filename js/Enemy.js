@@ -1,5 +1,5 @@
 class Enemy {
-   update(timeDiff) {
+   moveVertical(timeDiff) {
       this.y = this.y + timeDiff * this.speed
       this.domElement.style.top = this.y + "px"
       if (this.y > GAME_HEIGHT) {

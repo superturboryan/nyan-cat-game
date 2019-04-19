@@ -1,21 +1,30 @@
 class Engine {
 
+   constructor(theRoot) {
+      this.root = theRoot
+      this.player = new Player(this.root)
+      this.enemies = []
+      addBackground(this.root)
+      this.startTime = new Date();
+      this.pause = false;
+   }
+
    gameLoop = () => {
+
+      if (this.pause) {
+         return;
+      }
 
       let loopTime = new Date()
 
-      let currentTime = loopTime - this.startTime
-
       //Update timer label created in main
-      label.update(`${Math.floor((loopTime - this.startTime) / 1000)}`)
-
-      console.log(currentTime)
+      label.update(`Time: ${Math.floor((loopTime - this.startTime) / 1000)}s`)
 
       if (this.lastFrame === undefined) this.lastFrame = (new Date).getTime()
       let timeDiff = (new Date).getTime() - this.lastFrame
       this.lastFrame = (new Date).getTime()
       this.enemies.forEach(enemy => {
-         enemy.update(timeDiff)
+         enemy.moveVertical(timeDiff)
       })
 
       this.enemies = this.enemies.filter(enemy => {
@@ -42,7 +51,8 @@ class Engine {
          Check that enemy's x position is greater than the player's left boundary AND less than the right boundary
          AND enemy's lower boundary is greater than the players top (y) boundary.
          */
-         if ((enemy.x > this.player.x - (PLAYER_WIDTH / 2) && enemy.x < this.player.x + (PLAYER_WIDTH / 2)) && enemy.y + ENEMY_HEIGHT > this.player.y) {
+         if ((enemy.x > this.player.x - (PLAYER_WIDTH / 2) && enemy.x < this.player.x + (PLAYER_WIDTH / 2))
+            && (enemy.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && enemy.y < this.player.y + (PLAYER_HEIGHT / 2))) {
             collision = true
          }
       })
@@ -53,13 +63,7 @@ class Engine {
       this.startTime = new Date();
    }
 
-   constructor(theRoot) {
-      this.root = theRoot
-      this.player = new Player(this.root)
-      this.enemies = []
-      addBackground(this.root)
-      this.startTime = new Date();
-   }
+
 }
 
 
