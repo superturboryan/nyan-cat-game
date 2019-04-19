@@ -3,32 +3,40 @@ let mainDiv = document.getElementById('app')
 let gameEngine = new Engine(mainDiv)
 
 let scoreLabel = document.getElementById('enemyLabel')
+scoreLabel.style.position = "absolute"
+scoreLabel.style.top = (ENEMY_HEIGHT * 2) + GAME_HEIGHT + 10 + "px"
 
-let startLabel = new Text(mainDiv, 250, GAME_HEIGHT / 2, 60)
+let startLabel = new Text(mainDiv, 250, ENEMY_HEIGHT / 2, 60)
+
 startLabel.update("Press space to begin!")
 
 let timeLabel = new Text(mainDiv, 850, 25, 30);
 
 let interval;
 
+let refreshInterval;
+
+let refreshPlayer = () => {
+
+   gameEngine.player.domElement.src === "file:///Users/ryan/decode/my-workshops/nyan-cat/images/fish.png" ?
+      gameEngine.player.domElement.src = "file:///Users/ryan/decode/my-workshops/nyan-cat/images/fish2.png"
+      : gameEngine.player.domElement.src = "file:///Users/ryan/decode/my-workshops/nyan-cat/images/fish.png"
+
+   console.log("Current player image: ", gameEngine.player.domElement.src)
+}
+
 let startGame = () => {
    startLabel.update("")
    clearInterval(interval)
-   gameEngine.pause = false;
-   MAX_ENEMIES = 1;
+   clearInterval(refreshInterval)
+   ENEMY_COUNT = 5;
    updateScoreLabel();
    gameEngine.restartTimer();
    gameEngine.gameLoop();
-   interval = setInterval(incrementEnemyCount, 5000);
+   refreshInterval = setInterval(refreshPlayer, 1500)
+   interval = setInterval(incrementEnemyCount, 3000);
 }
 
-let pauseGame = () => {
-   gameEngine.pause = !gameEngine.pause
-
-   if (!gameEngine.pause) {
-      setTimeout(gameEngine.gameLoop, 5)
-   }
-}
 
 let keydownHandler = event => {
    if (event.code === "ArrowLeft") {
@@ -44,13 +52,13 @@ let keydownHandler = event => {
       gameEngine.player.moveDown()
    }
    if (event.code === "Space") {
-      if (gameEngine.pause) startGame()
+      gameEngine.resetPlayer();
+      startGame()
    }
-   if (event.code === "KeyP") {
-      pauseGame()
-   }
+
 }
 
+//Disable normal arrow controls
 window.addEventListener("keydown", event => {
    // space and arrow keys
    if ([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {

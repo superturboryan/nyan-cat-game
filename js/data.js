@@ -1,11 +1,12 @@
-let GAME_WIDTH = 1000 //Originally 375
-let GAME_HEIGHT = 500
+let GAME_WIDTH = 1200 //Originally 375
+let GAME_HEIGHT = 600
 
 let ENEMY_WIDTH = 75
 let ENEMY_HEIGHT = 156
-let MAX_ENEMIES = 1
+let ENEMY_COUNT = 5
 
 let PLAYER_WIDTH = 75
-let PLAYER_HEIGHT = 54
+let PLAYER_HEIGHT = 60
+
 
 

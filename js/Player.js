@@ -6,17 +6,16 @@ class Player {
       //Starting x position
       this.x = 0
       //Starting y position
-      let y = GAME_HEIGHT / 2 // Originally GAME_HEIGHT - PLAYER_HEIGHT - 10
-      this.y = y
+      this.y = (GAME_HEIGHT / 2) + (ENEMY_HEIGHT) // Originally GAME_HEIGHT - PLAYER_HEIGHT - 10 
       //Player dom node
       this.domElement = document.createElement("img")
       //Player img source
-      this.domElement.src = "images/player.png"
+      this.domElement.src = "images/fish.png"
       //
       this.domElement.style.position = "absolute"
       //Styling for left and top positions
       this.domElement.style.left = this.x + "px"
-      this.domElement.style.top = y + "px"
+      this.domElement.style.top = this.y + "px"
       //Layering
       this.domElement.style.zIndex = "10"
 
@@ -38,7 +37,7 @@ class Player {
    }
 
    moveDown() {
-      if (this.y + PLAYER_HEIGHT < GAME_HEIGHT - 10) {
+      if (this.y + PLAYER_HEIGHT < ENEMY_HEIGHT + GAME_HEIGHT) {
          this.y = this.y + PLAYER_HEIGHT
       }
       this.domElement.style.top = this.y + "px"
@@ -46,7 +45,7 @@ class Player {
 
    moveUp() {
       //If the top of the player is not a y=0, move the player according to his height
-      if (this.y > 0) {
+      if (this.y > 0 + ENEMY_HEIGHT) {
          this.y = this.y - PLAYER_HEIGHT
       }
       this.domElement.style.top = this.y + "px"

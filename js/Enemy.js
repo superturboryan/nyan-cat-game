@@ -1,8 +1,25 @@
 class Enemy {
+
+   constructor(theRoot, enemySpot) {
+      this.root = theRoot
+      this.spot = enemySpot
+      this.direction = Math.round(Math.random())
+      this.x = enemySpot * ENEMY_WIDTH
+      this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT + ENEMY_HEIGHT
+      this.domElement = document.createElement("img")
+      this.domElement.src = this.direction ? "images/car1.png" : "images/car2.png"
+      this.domElement.style.position = "absolute"
+      this.domElement.style.left = this.x + "px"
+      this.domElement.style.top = this.y + "px"
+      this.domElement.style.zIndex = 5
+      theRoot.appendChild(this.domElement)
+      this.speed = Math.random() / 2 + 0.1 //originally +0.25
+   }
+
    moveVerticalDown(timeDiff) {
       this.y = this.y + timeDiff * this.speed
       this.domElement.style.top = this.y + "px"
-      if (this.y > GAME_HEIGHT) {
+      if (this.y > GAME_HEIGHT + ENEMY_HEIGHT) {
          this.root.removeChild(this.domElement)
          this.destroyed = true
       }
@@ -17,19 +34,4 @@ class Enemy {
       }
    }
 
-   constructor(theRoot, enemySpot) {
-      this.root = theRoot
-      this.spot = enemySpot
-      this.direction = Math.round(Math.random())
-      this.x = enemySpot * ENEMY_WIDTH
-      this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT
-      this.domElement = document.createElement("img")
-      this.domElement.src = "images/enemy.png"
-      this.domElement.style.position = "absolute"
-      this.domElement.style.left = this.x + "px"
-      this.domElement.style.top = this.y + "px"
-      this.domElement.style.zIndex = 5
-      theRoot.appendChild(this.domElement)
-      this.speed = Math.random() / 2 + 0.1 //originally +0.25
-   }
 } 

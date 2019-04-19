@@ -4,16 +4,12 @@ class Engine {
       this.root = theRoot
       this.player = new Player(this.root)
       this.enemies = []
+      this.goal = new Goal(this.root)
       addBackground(this.root)
       this.startTime = new Date();
-      this.pause = true;
    }
 
    gameLoop = () => {
-
-      if (this.pause) {
-         return;
-      }
 
       let loopTime = new Date()
 
@@ -36,15 +32,21 @@ class Engine {
          return !enemy.destroyed
       })
 
-      while (this.enemies.length < MAX_ENEMIES) {
-         let spot = nextEnemySpot(this.enemies)
-         this.enemies.push(new Enemy(this.root, spot))
-      }
+      // while (this.enemies.length < ENEMY_COUNT) {
+      //    let spot = nextEnemySpot(this.enemies)
+      //    this.enemies.push(new Enemy(this.root, spot))
+      // }
 
       if (this.isPlayerDead()) {
          window.alert("Game over")
          return
       }
+
+      if (this.didReachGoal()) {
+         window.alert("YOU WIN!")
+         return
+      }
+
       setTimeout(this.gameLoop, 5)
    }
 
@@ -64,8 +66,28 @@ class Engine {
       return collision;
    }
 
+   didReachGoal = () => {
+      let goal = false;
+
+      if ((this.goal.x > this.player.x - (PLAYER_WIDTH / 2) && this.goal.x < this.player.x + (PLAYER_WIDTH / 2))
+         && (this.goal.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && this.goal.y < this.player.y + (PLAYER_HEIGHT / 2))) {
+         goal = true
+      }
+
+      return goal
+   }
+
    restartTimer = () => {
       this.startTime = new Date();
+   }
+
+   resetPlayer = () => {
+      console.log("resetting player")
+      this.player.x = 0;
+      this.player.y = (GAME_HEIGHT / 2) + (ENEMY_HEIGHT);
+      this.player.domElement.style.left = this.player.x + "px"
+      this.player.domElement.style.top = this.player.y + "px"
+
    }
 
 

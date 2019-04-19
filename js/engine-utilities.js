@@ -1,6 +1,8 @@
+
+
 let nextEnemySpot = enemies => {
    let enemySpots = GAME_WIDTH / ENEMY_WIDTH
-   let spotsTaken = [false, false, false, false, false]
+   let spotsTaken = [false, false, false, false, false, false, false, false, false, false]
    enemies.forEach(enemy => {
       spotsTaken[enemy.spot] = true
    })
@@ -13,29 +15,42 @@ let nextEnemySpot = enemies => {
 }
 let addBackground = root => {
 
+   let topBox = document.createElement("div")
+   topBox.style.zIndex = 100
+   topBox.style.position = "absolute"
+   topBox.style.top = "0px"
+   topBox.style.height = ENEMY_HEIGHT + "px"
+   topBox.style.width = GAME_WIDTH + 100 + "px"
+   topBox.style.background = "black"
+   root.append(topBox)
+
    let bg = document.createElement("img")
-   bg.src = "images/stars.png"
+   bg.src = "images/underwater.gif"
+   bg.style.position = "absolute"
    bg.style.height = GAME_HEIGHT + "px"
    bg.style.width = GAME_WIDTH + "px"
+   bg.style.top = ENEMY_HEIGHT + "px"
    root.append(bg)
 
-   let whiteBox = document.createElement("div")
-   whiteBox.style.zIndex = 100
-   whiteBox.style.position = "absolute"
-   whiteBox.style.top = GAME_HEIGHT + "px"
-   whiteBox.style.height = ENEMY_HEIGHT + "px"
-   whiteBox.style.width = GAME_WIDTH + "px"
-   whiteBox.style.background = "black"
-   root.append(whiteBox)
+   let bottomBox = document.createElement("div")
+   bottomBox.style.zIndex = 100
+   bottomBox.style.position = "absolute"
+   bottomBox.style.top = GAME_HEIGHT + ENEMY_HEIGHT + "px"
+   bottomBox.style.height = ENEMY_HEIGHT + "px"
+   bottomBox.style.width = GAME_WIDTH + 100 + "px"
+   bottomBox.style.background = "black"
+   root.append(bottomBox)
 }
 
 let updateScoreLabel = () => {
-   scoreLabel.innerText = `Enemy count: ${MAX_ENEMIES}`
+   scoreLabel.innerText = `Enemy count: ${ENEMY_COUNT}`
 }
 
 let incrementEnemyCount = () => {
-   if (MAX_ENEMIES === 5) return;
-   MAX_ENEMIES++
+   if (ENEMY_COUNT === 10) return;
+   ENEMY_COUNT++
    updateScoreLabel();
 }
+
+
 
