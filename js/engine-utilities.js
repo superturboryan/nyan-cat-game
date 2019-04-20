@@ -43,7 +43,7 @@ let addBackground = root => {
 }
 
 let updateScoreLabel = () => {
-   scoreLabel.innerText = `Enemy count: ${ENEMY_COUNT}`
+   enemyCountLabel.innerText = `Enemy count: ${ENEMY_COUNT}`
 }
 
 let incrementEnemyCount = () => {

@@ -32,10 +32,10 @@ class Engine {
          return !enemy.destroyed
       })
 
-      // while (this.enemies.length < ENEMY_COUNT) {
-      //    let spot = nextEnemySpot(this.enemies)
-      //    this.enemies.push(new Enemy(this.root, spot))
-      // }
+      while (this.enemies.length < ENEMY_COUNT) {
+         let spot = nextEnemySpot(this.enemies)
+         this.enemies.push(new Enemy(this.root, spot))
+      }
 
       if (this.isPlayerDead()) {
          window.alert("Game over")
@@ -53,11 +53,11 @@ class Engine {
 
    isPlayerDead = () => {
       let collision = false;
-      this.enemies.forEach(enemy => {
-         /* 
+      /* 
          Check that enemy's x position is greater than the player's left boundary AND less than the right boundary
          AND enemy's lower boundary is greater than the players top (y) boundary.
-         */
+      */
+      this.enemies.forEach(enemy => {
          if ((enemy.x > this.player.x - (PLAYER_WIDTH / 2) && enemy.x < this.player.x + (PLAYER_WIDTH / 2))
             && (enemy.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && enemy.y < this.player.y + (PLAYER_HEIGHT / 2))) {
             collision = true
@@ -69,9 +69,17 @@ class Engine {
    didReachGoal = () => {
       let goal = false;
 
+      // if ((this.goal.x > this.player.x - (PLAYER_WIDTH / 2) && this.goal.x < this.player.x + (PLAYER_WIDTH / 2))
+      //    && (this.goal.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && this.goal.y < this.player.y + (PLAYER_HEIGHT / 2))) {
       if ((this.goal.x > this.player.x - (PLAYER_WIDTH / 2) && this.goal.x < this.player.x + (PLAYER_WIDTH / 2))
-         && (this.goal.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && this.goal.y < this.player.y + (PLAYER_HEIGHT / 2))) {
+         && ((this.goal.y > this.player.y - (PLAYER_HEIGHT / 2) && this.goal.y < this.player.y + (PLAYER_HEIGHT / 2)))) {
+
          goal = true
+
+         this.goal
+
+         // console.log(`Goal x: ${this.goal.x} y: ${this.goal.y}
+         // Play x: ${this.player.x} y: ${this.player.y}`)
       }
 
       return goal

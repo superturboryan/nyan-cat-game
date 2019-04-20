@@ -7,7 +7,7 @@ class Enemy {
       this.x = enemySpot * ENEMY_WIDTH
       this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT + ENEMY_HEIGHT
       this.domElement = document.createElement("img")
-      this.domElement.src = this.direction ? "images/car1.png" : "images/car2.png"
+      this.domElement.src = this.direction ? "images/crab-down.png" : "images/blowfish-up.png"
       this.domElement.style.position = "absolute"
       this.domElement.style.left = this.x + "px"
       this.domElement.style.top = this.y + "px"

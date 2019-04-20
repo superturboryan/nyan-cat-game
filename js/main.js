@@ -1,10 +1,10 @@
 let mainDiv = document.getElementById('app')
 
 let gameEngine = new Engine(mainDiv)
-
-let scoreLabel = document.getElementById('enemyLabel')
-scoreLabel.style.position = "absolute"
-scoreLabel.style.top = (ENEMY_HEIGHT * 2) + GAME_HEIGHT + 10 + "px"
+// console.log("Screen width", screen.width)
+let enemyCountLabel = document.getElementById('enemyLabel')
+enemyCountLabel.style.position = "absolute"
+enemyCountLabel.style.top = (ENEMY_HEIGHT * 2) + GAME_HEIGHT + 10 + "px"
 
 let startLabel = new Text(mainDiv, 250, ENEMY_HEIGHT / 2, 60)
 
@@ -17,12 +17,9 @@ let interval;
 let refreshInterval;
 
 let refreshPlayer = () => {
-
-   gameEngine.player.domElement.src === "file:///Users/ryan/decode/my-workshops/nyan-cat/images/fish.png" ?
-      gameEngine.player.domElement.src = "file:///Users/ryan/decode/my-workshops/nyan-cat/images/fish2.png"
-      : gameEngine.player.domElement.src = "file:///Users/ryan/decode/my-workshops/nyan-cat/images/fish.png"
-
-   console.log("Current player image: ", gameEngine.player.domElement.src)
+   // gameEngine.player.domElement.src === "file:///Users/ryan/decode/my-workshops/fisher/images/fish.png" ?
+   //    gameEngine.player.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish2.png"
+   //    : gameEngine.player.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish.png"
 }
 
 let startGame = () => {
@@ -33,7 +30,7 @@ let startGame = () => {
    updateScoreLabel();
    gameEngine.restartTimer();
    gameEngine.gameLoop();
-   refreshInterval = setInterval(refreshPlayer, 1500)
+   refreshInterval = setInterval(refreshPlayer, 500)
    interval = setInterval(incrementEnemyCount, 3000);
 }
 

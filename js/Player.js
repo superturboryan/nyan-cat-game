@@ -10,7 +10,7 @@ class Player {
       //Player dom node
       this.domElement = document.createElement("img")
       //Player img source
-      this.domElement.src = "images/fish.png"
+      this.domElement.src = "images/fish-right.png"
       //
       this.domElement.style.position = "absolute"
       //Styling for left and top positions
@@ -25,13 +25,15 @@ class Player {
    moveLeft() {
       if (this.x > 0) {
          this.x = this.x - PLAYER_WIDTH
+         this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-left.png"
       }
       this.domElement.style.left = this.x + "px"
    }
 
    moveRight() {
-      if (this.x + PLAYER_WIDTH < GAME_WIDTH) {
+      if (this.x + PLAYER_WIDTH < GAME_WIDTH - 20) {
          this.x = this.x + PLAYER_WIDTH
+         this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right.png"
       }
       this.domElement.style.left = this.x + "px"
    }
@@ -39,6 +41,7 @@ class Player {
    moveDown() {
       if (this.y + PLAYER_HEIGHT < ENEMY_HEIGHT + GAME_HEIGHT) {
          this.y = this.y + PLAYER_HEIGHT
+         this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-down.png"
       }
       this.domElement.style.top = this.y + "px"
    }
@@ -47,6 +50,7 @@ class Player {
       //If the top of the player is not a y=0, move the player according to his height
       if (this.y > 0 + ENEMY_HEIGHT) {
          this.y = this.y - PLAYER_HEIGHT
+         this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-up.png"
       }
       this.domElement.style.top = this.y + "px"
    }
