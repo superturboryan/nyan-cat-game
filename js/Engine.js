@@ -43,8 +43,8 @@ class Engine {
       }
 
       if (this.didReachGoal()) {
-         window.alert("YOU WIN!")
-         return
+         this.goal.remove()
+         this.goal = new Goal(this.root)
       }
 
       setTimeout(this.gameLoop, 5)

@@ -9,7 +9,7 @@ class Goal {
       //Player dom node
       this.domElement = document.createElement("img")
       //Player img source
-      this.domElement.src = "images/plate2.png"
+      this.domElement.src = "images/beer.png"
       //
       this.domElement.style.position = "absolute"
       //Styling for left and top positions
@@ -27,6 +27,10 @@ class Goal {
       this.y = ENEMY_HEIGHT + 3 + (75 * (Math.floor(Math.random() * 8)))
 
       // console.log(`Goal x ${this.x} y ${this.y}`)
+   }
+
+   remove() {
+      this.domElement.style.display = "none"
    }
 
 }
