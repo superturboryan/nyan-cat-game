@@ -6,11 +6,15 @@ let enemyCountLabel = document.getElementById('enemyLabel')
 enemyCountLabel.style.position = "absolute"
 enemyCountLabel.style.top = (ENEMY_HEIGHT * 2) + GAME_HEIGHT + 10 + "px"
 
-let startLabel = new Text(mainDiv, 250, ENEMY_HEIGHT / 2, 60)
+let startLabel = new Text(mainDiv, 250, ENEMY_HEIGHT + (GAME_HEIGHT / 2), 60)
 
 startLabel.update("Press space to begin!")
 
-let timeLabel = new Text(mainDiv, 850, 25, 30);
+let scoreLabel = new Text(mainDiv, 1000, 20, 30)
+
+scoreLabel.update(`Score: ${gameEngine.score}`)
+
+let timeLabel = new Text(mainDiv, 1250, 20, 30);
 
 let interval;
 
@@ -27,8 +31,8 @@ let startGame = () => {
    clearInterval(interval)
    clearInterval(refreshInterval)
    ENEMY_COUNT = 5;
-   updateScoreLabel();
-   gameEngine.restartTimer();
+   updateEnemyCountLabel();
+   gameEngine.restartStats();
    gameEngine.gameLoop();
    refreshInterval = setInterval(refreshPlayer, 500)
    interval = setInterval(incrementEnemyCount, 3000);

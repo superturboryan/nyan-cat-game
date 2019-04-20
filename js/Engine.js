@@ -7,6 +7,7 @@ class Engine {
       this.goal = new Goal(this.root)
       addBackground(this.root)
       this.startTime = new Date();
+      this.score = 0;
    }
 
    gameLoop = () => {
@@ -45,6 +46,9 @@ class Engine {
       if (this.didReachGoal()) {
          this.goal.remove()
          this.goal = new Goal(this.root)
+         //Increment score and update label
+         this.score++
+         scoreLabel.update(`Score: ${gameEngine.score}`)
       }
 
       setTimeout(this.gameLoop, 5)
@@ -85,8 +89,10 @@ class Engine {
       return goal
    }
 
-   restartTimer = () => {
+   restartStats = () => {
       this.startTime = new Date();
+      this.score = 0;
+      scoreLabel.update(`Score: ${gameEngine.score}`)
    }
 
    resetPlayer = () => {

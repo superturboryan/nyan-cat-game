@@ -42,14 +42,14 @@ let addBackground = root => {
    root.append(bottomBox)
 }
 
-let updateScoreLabel = () => {
+let updateEnemyCountLabel = () => {
    enemyCountLabel.innerText = `Enemy count: ${ENEMY_COUNT}`
 }
 
 let incrementEnemyCount = () => {
    if (ENEMY_COUNT === 10) return;
    ENEMY_COUNT++
-   updateScoreLabel();
+   updateEnemyCountLabel();
 }
 
 
