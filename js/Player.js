@@ -19,6 +19,7 @@ class Player {
       //Layering
       this.domElement.style.zIndex = "10"
 
+
       root.appendChild(this.domElement)
    }
 
@@ -54,4 +55,6 @@ class Player {
       }
       this.domElement.style.top = this.y + "px"
    }
+
+
 } 

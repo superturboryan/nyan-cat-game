@@ -10,3 +10,25 @@ body {
    color: white;
 }
 
+.buttonStyle {
+   border: solid black 2px;
+   border-radius: 25px;
+   background-color: rgba(255,255,255,0.5);
+}
+
+.startFont {
+   font-size: 50px;
+   font-family: 'Roboto Mono', monospace;
+}
+
+.instructionsFont {
+   font-size: 25px;
+   font-family: 'Roboto Mono', monospace;
+   font-style: italic;
+}
+
+.titleFont {
+   font-size: 50px;
+   font-weight: bold;
+   font-family: 'Roboto Mono', monospace;
+}

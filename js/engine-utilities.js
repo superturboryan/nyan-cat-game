@@ -52,5 +52,64 @@ let incrementEnemyCount = () => {
    updateEnemyCountLabel();
 }
 
+let showStartMenu = () => {
+
+   let menu = document.getElementById('startMenu')
+   let titleLabel = document.getElementById('titleLabel')
+   let startButton = document.getElementById('startButton')
+   let instructionsButton = document.getElementById('instructionsButton')
+
+   menu.style.position = 'absolute'
+   menu.style.top = ENEMY_HEIGHT + 150 + "px"
+   menu.style.left = "380px"
+   menu.style.height = GAME_HEIGHT / 2 + "px"
+   menu.style.width = PLAYER_WIDTH * 9 + "px"
+   menu.style.zIndex = 100
+   menu.style.border = "solid black 4px"
+   menu.style.borderRadius = "25px"
+   menu.style.backgroundColor = "rgba(0,0,0,0.2)"
+
+
+   startButton.style.marginTop = "60px"
+   startButton.style.marginLeft = "90px"
+   startButton.style.marginRight = "90px"
+   startButton.style.marginBottom = "50px"
+   startButton.style.height = BUTTON_HEIGHT + "px"
+   startButton.style.width = BUTTON_WIDTH + "px"
+   startButton.zIndex = 100
+
+
+   instructionsButton.style.marginTop = "60px"
+   instructionsButton.style.marginRight = "90px"
+   instructionsButton.style.marginBottom = "50px"
+   instructionsButton.style.height = BUTTON_HEIGHT + "px"
+   instructionsButton.style.width = BUTTON_WIDTH + "px"
+   instructionsButton.zIndex = 100
+
+   titleLabel.style.textAlign = "center"
+   titleLabel.style.marginTop = "50px"
+}
+
+let instructionsPressed = () => {
+   let menu = document.getElementById('startMenu')
+   menu.style.display = "none"
+
+   let instructions = document.createElement('div')
+   instructions.style.position = 'absolute'
+   instructions.style.top = ENEMY_HEIGHT + 150 + "px"
+   instructions.style.left = "380px"
+   instructions.style.height = GAME_HEIGHT / 2 + "px"
+   instructions.style.width = PLAYER_WIDTH * 9 + "px"
+   instructions.style.zIndex = 100
+   instructions.style.border = "solid black 4px"
+   instructions.style.borderRadius = "25px"
+   instructions.style.backgroundColor = "rgba(0,0,0,0.2)"
+
+   mainDiv.appendChild(instructions)
+
+   instructions.innerText = "Here are the instructions"
+
+}
+
 
 

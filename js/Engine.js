@@ -8,12 +8,12 @@ class Engine {
       addBackground(this.root)
       this.startTime = new Date();
       this.score = 0;
+      this.enemyInterval;
    }
 
    gameLoop = () => {
 
       let loopTime = new Date()
-
       //Update timer label created in main
       timeLabel.update(`Time: ${Math.floor((loopTime - this.startTime) / 1000)}s`)
       //Get difference between last frame
@@ -39,7 +39,7 @@ class Engine {
       }
 
       if (this.isPlayerDead()) {
-         window.alert("Game over")
+         menu.style.display = "block"
          return
       }
 
@@ -101,7 +101,24 @@ class Engine {
       this.player.y = (GAME_HEIGHT / 2) + (ENEMY_HEIGHT);
       this.player.domElement.style.left = this.player.x + "px"
       this.player.domElement.style.top = this.player.y + "px"
+   }
 
+
+
+   startGame = () => {
+      //Assign arrow keys
+      document.addEventListener("keydown", keydownHandler)
+      //Hide menu
+      let menu = document.getElementById('startMenu')
+      menu.style.display = "none"
+      //Reset player position
+      this.resetPlayer()
+      clearInterval(this.enemyInterval)
+      ENEMY_COUNT = 5
+      updateEnemyCountLabel()
+      this.restartStats()
+      this.gameLoop()
+      this.enemyInterval = setInterval(incrementEnemyCount, 500)
    }
 
 
