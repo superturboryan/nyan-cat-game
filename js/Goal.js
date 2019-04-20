@@ -23,7 +23,7 @@ class Goal {
 
    setRandomPosition() {
 
-      this.x = 3 + (75 * (Math.floor(Math.random() * 19.2)))
+      this.x = (75 * (Math.floor(Math.random() * 18.2)))
       this.y = ENEMY_HEIGHT + 3 + (75 * (Math.floor(Math.random() * 8)))
 
       // console.log(`Goal x ${this.x} y ${this.y}`)
