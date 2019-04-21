@@ -18,6 +18,7 @@ class Player {
       this.domElement.style.top = this.y + "px"
       //Layering
       this.domElement.style.zIndex = "10"
+      this.direction = "R";
 
 
       root.appendChild(this.domElement)
@@ -25,6 +26,7 @@ class Player {
 
    moveLeft() {
       if (this.x > 0) {
+         this.direction = "L"
          this.x = this.x - PLAYER_WIDTH
          this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-left.png"
       }
@@ -33,6 +35,7 @@ class Player {
 
    moveRight() {
       if (this.x + PLAYER_WIDTH < GAME_WIDTH - 20) {
+         this.direction = "R"
          this.x = this.x + PLAYER_WIDTH
          this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right.png"
       }
@@ -41,6 +44,7 @@ class Player {
 
    moveDown() {
       if (this.y + PLAYER_HEIGHT < ENEMY_HEIGHT + GAME_HEIGHT) {
+         this.direction = "D"
          this.y = this.y + PLAYER_HEIGHT
          this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-down.png"
       }
@@ -50,10 +54,44 @@ class Player {
    moveUp() {
       //If the top of the player is not a y=0, move the player according to his height
       if (this.y > 0 + ENEMY_HEIGHT) {
+         this.direction = "U"
          this.y = this.y - PLAYER_HEIGHT
          this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-up.png"
       }
       this.domElement.style.top = this.y + "px"
+   }
+
+   refreshPlayer() {
+
+      this.domElement = gameEngine.player.domElement
+
+      this.direction = gameEngine.player.direction
+
+      console.log(`
+      Dom element source: ${this.domElement.src}
+      Direction: ${this.direction}
+      `)
+
+      if (this.direction === "R") {
+         this.domElement.src === "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right.png" ?
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right2.png" :
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right.png"
+      }
+      if (this.direction === "L") {
+         this.domElement.src === "file:///Users/ryan/decode/my-workshops/fisher/images/fish-left.png" ?
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-left2.png" :
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-left.png"
+      }
+      if (this.direction === "U") {
+         this.domElement.src === "file:///Users/ryan/decode/my-workshops/fisher/images/fish-up.png" ?
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-up2.png" :
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-up.png"
+      }
+      if (this.direction === "D") {
+         this.domElement.src === "file:///Users/ryan/decode/my-workshops/fisher/images/fish-down.png" ?
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-down2.png" :
+            this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-down.png"
+      }
    }
 
 

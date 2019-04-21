@@ -9,6 +9,7 @@ class Engine {
       this.startTime = new Date();
       this.score = 0;
       this.enemyInterval;
+      this.playerRefreshInterval;
    }
 
    gameLoop = () => {
@@ -38,9 +39,14 @@ class Engine {
          this.enemies.push(new Enemy(this.root, spot))
       }
 
+      //Check for game over
       if (this.isPlayerDead()) {
+         themeMusic.pause()
          new Audio('sounds/doh.mp3').play()
          menu.style.display = "block"
+         //Clear intervals
+         clearInterval(this.enemyInterval)
+         clearInterval(this.playerRefreshInterval)
          return
       }
 
@@ -121,8 +127,8 @@ class Engine {
    }
 
 
-
    startGame = () => {
+      themeMusic.play()
       //Assign arrow keys
       document.addEventListener("keydown", keydownHandler)
       //Hide menu
@@ -130,13 +136,15 @@ class Engine {
       menu.style.display = "none"
       //Reset player position
       this.resetPlayer()
-      clearInterval(this.enemyInterval)
       //Reset enemy count
       ENEMY_COUNT = 2
       updateEnemyCountLabel()
       this.restartStats()
       this.gameLoop()
+
       this.enemyInterval = setInterval(incrementEnemyCount, 5000)
+      this.playerRefreshInterval = setInterval(this.player.refreshPlayer, 400)
+
    }
 
 
