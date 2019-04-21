@@ -64,6 +64,7 @@ window.addEventListener("keydown", event => {
 
 startButton.addEventListener("click", gameEngine.startGame)
 instructionsButton.addEventListener("click", instructionsPressed)
-showStartMenu()
+
+setTimeout(showStartMenu, 1000)
 
 
