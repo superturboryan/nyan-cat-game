@@ -67,11 +67,6 @@ class Player {
 
       this.direction = gameEngine.player.direction
 
-      console.log(`
-      Dom element source: ${this.domElement.src}
-      Direction: ${this.direction}
-      `)
-
       if (this.direction === "R") {
          this.domElement.src === "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right.png" ?
             this.domElement.src = "file:///Users/ryan/decode/my-workshops/fisher/images/fish-right2.png" :

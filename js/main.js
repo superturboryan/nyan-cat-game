@@ -1,7 +1,6 @@
 let mainDiv = document.getElementById('app')
 
 let gameEngine = new Engine(mainDiv)
-// console.log("Screen width", screen.width)
 let enemyCountLabel = document.getElementById('enemyLabel')
 enemyCountLabel.style.position = "absolute"
 enemyCountLabel.style.top = (ENEMY_HEIGHT * 2) + GAME_HEIGHT + 10 + "px"
@@ -52,7 +51,6 @@ let keydownHandler = event => {
    if (event.code === "Space") {
       gameEngine.startGame()
    }
-   console.log(gameEngine.player.direction)
 }
 
 //Disable normal arrow controls for scrolling

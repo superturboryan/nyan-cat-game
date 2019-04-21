@@ -8,8 +8,6 @@ class Goal {
       this.setRandomPosition();
       //Player dom node
       this.domElement = document.createElement("img")
-      //Player img source
-      this.domElement.src = "images/beer.png"
       //
       this.domElement.style.position = "absolute"
       //Styling for left and top positions
@@ -17,6 +15,14 @@ class Goal {
       this.domElement.style.top = this.y + "px"
       //Layering
       this.domElement.style.zIndex = "9"
+      this.value = Math.round(Math.random() * 2)
+      //Player img source
+      if (this.value === 2) {
+         this.domElement.src = "images/beer2.png"
+      }
+      else {
+         this.domElement.src = "images/beer.png"
+      }
 
       root.appendChild(this.domElement)
    }

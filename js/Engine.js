@@ -41,6 +41,7 @@ class Engine {
 
       //Check for game over
       if (this.isPlayerDead()) {
+         document.removeEventListener("keydown", keydownHandler)
          themeMusic.pause()
          new Audio('sounds/doh.mp3').play()
          menu.style.display = "block"
@@ -51,18 +52,25 @@ class Engine {
       }
 
       if (this.didReachGoal()) {
-
          this.goal.remove()
          this.goal = new Goal(this.root)
          //Increment score and update label
-         this.score++
-         scoreLabel.update(`Score: ${gameEngine.score}`)
-
-         if (this.score % 5 === 0) {
-            new Audio('sounds/hacker.mp3').play()
+         if (this.goal.value === 2) {
+            this.score += 2
          }
          else {
+            this.score++
+         }
+         scoreLabel.update(`Score: ${gameEngine.score}`)
+
+         if (this.score % 10 === 0) {
+            new Audio('sounds/hacker.mp3').play()
+         }
+         else if (this.score % 4 === 0) {
             new Audio('sounds/beer.mp3').play()
+         }
+         else {
+            new Audio('sounds/gulp.mp3').play()
          }
       }
       //Call function recursively with delay
@@ -77,17 +85,9 @@ class Engine {
          AND enemy's lower boundary is greater than the players top (y) boundary.
       */
       this.enemies.forEach(enemy => {
-         if (enemy.type === 0) {
-            if ((enemy.x > this.player.x - (PLAYER_WIDTH) && enemy.x < this.player.x + (PLAYER_WIDTH))
-               && (enemy.y + ENEMY_HEIGHT > this.player.y - (PLAYER_HEIGHT) && enemy.y < this.player.y + (PLAYER_HEIGHT))) {
-               collision = true
-            }
-         }
-         else {
-            if ((enemy.x > this.player.x - (PLAYER_WIDTH / 2) && enemy.x < this.player.x + (PLAYER_WIDTH / 2))
-               && (enemy.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && enemy.y < this.player.y + (PLAYER_HEIGHT / 2))) {
-               collision = true
-            }
+         if ((enemy.x > this.player.x - (PLAYER_WIDTH / 2) && enemy.x < this.player.x + (PLAYER_WIDTH / 2))
+            && (enemy.y + ENEMY_HEIGHT / 2 > this.player.y - (PLAYER_HEIGHT / 2) && enemy.y < this.player.y + (PLAYER_HEIGHT / 2))) {
+            collision = true
          }
       })
       return collision;
@@ -119,7 +119,6 @@ class Engine {
    }
 
    resetPlayer = () => {
-      console.log("resetting player")
       this.player.x = 0;
       this.player.y = (GAME_HEIGHT / 2) + (ENEMY_HEIGHT);
       this.player.domElement.style.left = this.player.x + "px"
@@ -128,6 +127,7 @@ class Engine {
 
 
    startGame = () => {
+      let woohoo = new Audio('sounds/woohoo.mp3').play()
       themeMusic.play()
       //Assign arrow keys
       document.addEventListener("keydown", keydownHandler)

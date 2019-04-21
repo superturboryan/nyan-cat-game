@@ -1,5 +1,5 @@
 //Originally 375 // Screen width = 1440
-let GAME_WIDTH = screen.width
+let GAME_WIDTH = 1425
 let GAME_HEIGHT = 600
 
 let ENEMY_WIDTH = 75

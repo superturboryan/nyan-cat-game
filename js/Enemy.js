@@ -8,7 +8,6 @@ class Enemy {
       this.x = enemySpot * ENEMY_WIDTH
       this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT + ENEMY_HEIGHT
       this.domElement = document.createElement("img")
-
       if (this.type === 0) {
          this.domElement.src = "images/octopus-up2.png"
       }
@@ -20,7 +19,7 @@ class Enemy {
       this.domElement.style.top = this.y + "px"
       this.domElement.style.zIndex = 5
       theRoot.appendChild(this.domElement)
-      this.speed = Math.random() / 2 + 0.1 //originally +0.25
+      this.speed = Math.random() / 2.2 + 0.1 //originally +0.25
    }
 
    moveVerticalDown(timeDiff) {
