@@ -111,7 +111,8 @@ let instructionsPressed = () => {
    mainDiv.appendChild(instructions)
 
    instructions.innerText = `
-   You've just finished work developing at Goggle and you have a serious thirst to quench.
+   You've just finished work developing at Goggle and have a serious thirst to quench.
+   
    Swim around using the ARROW KEYS while avoiding the hostile sea-creatures.
    
    Press the SPACEBAR to begin
