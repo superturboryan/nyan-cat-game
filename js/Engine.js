@@ -127,13 +127,16 @@ class Engine {
 
 
    startGame = () => {
+      let instructions = document.getElementById('instructions')
       let woohoo = new Audio('sounds/woohoo.mp3').play()
       themeMusic.play()
       //Assign arrow keys
       document.addEventListener("keydown", keydownHandler)
-      //Hide menu
-      let menu = document.getElementById('startMenu')
+      //Hide menus
       menu.style.display = "none"
+      if (instructions !== null) {
+         instructions.style.display = "none"
+      }
       //Reset player position
       this.resetPlayer()
       //Reset enemy count
@@ -142,7 +145,7 @@ class Engine {
       this.restartStats()
       this.gameLoop()
 
-      this.enemyInterval = setInterval(incrementEnemyCount, 5000)
+      this.enemyInterval = setInterval(incrementEnemyCount, 8000)
       this.playerRefreshInterval = setInterval(this.player.refreshPlayer, 400)
 
    }

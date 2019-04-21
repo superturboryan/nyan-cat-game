@@ -48,6 +48,9 @@ let keydownHandler = event => {
       if (randomNum === 2) bubbleSound()
       gameEngine.player.moveDown()
    }
+}
+
+let spaceToStart = event => {
    if (event.code === "Space") {
       gameEngine.startGame()
    }
@@ -65,6 +68,8 @@ window.addEventListener("keydown", event => {
 startButton.addEventListener("click", gameEngine.startGame)
 instructionsButton.addEventListener("click", instructionsPressed)
 
-setTimeout(showStartMenu, 1000)
+showStartMenu()
+
+document.addEventListener("keydown", spaceToStart)
 
 

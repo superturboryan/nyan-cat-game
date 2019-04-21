@@ -47,7 +47,7 @@ let updateEnemyCountLabel = () => {
 }
 
 let incrementEnemyCount = () => {
-   if (ENEMY_COUNT === 10) return;
+   if (ENEMY_COUNT === 8) return;
    ENEMY_COUNT++
    updateEnemyCountLabel();
    console.log(`Enemy count: ${ENEMY_COUNT}`)
@@ -92,10 +92,10 @@ let showStartMenu = () => {
 }
 
 let instructionsPressed = () => {
-   let menu = document.getElementById('startMenu')
    menu.style.display = "none"
-
    let instructions = document.createElement('div')
+   instructions.id = "instructions"
+   instructions.className = "menu"
    instructions.style.position = 'absolute'
    instructions.style.top = ENEMY_HEIGHT + 150 + "px"
    instructions.style.left = "380px"
@@ -105,10 +105,17 @@ let instructionsPressed = () => {
    instructions.style.border = "solid black 4px"
    instructions.style.borderRadius = "25px"
    instructions.style.backgroundColor = "rgba(0,0,0,0.2)"
-
+   instructions.style.textAlign = "center"
+   instructions.style.fontSize = "25px"
+   instructions.style.fontFamily = "'Roboto Mono', monospace"
    mainDiv.appendChild(instructions)
 
-   instructions.innerText = "Here are the instructions"
+   instructions.innerText = `
+   You've just finished work developing at Goggle and you have a serious thirst to quench.
+   Swim around using the ARROW KEYS while avoiding the hostile sea-creatures.
+   
+   Press the SPACEBAR to begin
+   `
 
 }
 
