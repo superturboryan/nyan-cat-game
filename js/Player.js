@@ -19,6 +19,8 @@ class Player {
       //Layering
       this.domElement.style.zIndex = "10"
       this.direction = "R";
+      this.domElement.className = "rotating"
+
 
 
       root.appendChild(this.domElement)

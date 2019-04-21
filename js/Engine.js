@@ -129,6 +129,7 @@ class Engine {
    startGame = () => {
       let instructions = document.getElementById('instructions')
       let woohoo = new Audio('sounds/woohoo.mp3').play()
+      themeMusic.load()
       themeMusic.play()
       //Assign arrow keys
       document.addEventListener("keydown", keydownHandler)

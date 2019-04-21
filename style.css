@@ -13,6 +13,30 @@
 	}
 }
 
+@keyframes float2 {
+	0% {
+      transform: translatey(0px);
+	}
+	50% {
+      transform: translatey(-15px);
+	}
+	100% {
+      transform: translatey(0px);
+	}
+}
+
+@keyframes rotate {
+	0% {
+      transform: rotate(0deg);
+	}
+	50% {
+      transform: rotate(-10deg);
+	}
+	100% {
+      transform: rotate(0deg);
+	}
+}
+
 body {
    background-color: black;
 }
@@ -51,4 +75,16 @@ body {
 .menu {
    transform: translatey(0px);
 	animation: float 5s ease-in-out infinite;
+}
+
+.floating {
+   transform: translatey(0px);
+   animation: float2 2s ease-in-out infinite;
+   background-color: transparent;
+}
+
+.rotating{
+   transform: rotate(0deg);
+   animation: rotate 2s ease-in-out infinite;
+   background-color: transparent;
 }
