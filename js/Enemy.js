@@ -4,10 +4,17 @@ class Enemy {
       this.root = theRoot
       this.spot = enemySpot
       this.direction = Math.round(Math.random())
+      this.type = Math.round(Math.random() * 2)
       this.x = enemySpot * ENEMY_WIDTH
       this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT + ENEMY_HEIGHT
       this.domElement = document.createElement("img")
-      this.domElement.src = this.direction ? "images/crab-down.png" : "images/blowfish-up.png"
+
+      if (this.type === 0) {
+         this.domElement.src = "images/octopus-up2.png"
+      }
+      else {
+         this.domElement.src = this.direction ? "images/crab-down.png" : "images/blowfish-up.png"
+      }
       this.domElement.style.position = "absolute"
       this.domElement.style.left = this.x + "px"
       this.domElement.style.top = this.y + "px"

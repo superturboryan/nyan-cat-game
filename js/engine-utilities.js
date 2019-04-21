@@ -36,7 +36,7 @@ let addBackground = root => {
    bottomBox.style.zIndex = 100
    bottomBox.style.position = "absolute"
    bottomBox.style.top = GAME_HEIGHT + ENEMY_HEIGHT + "px"
-   bottomBox.style.height = ENEMY_HEIGHT + "px"
+   bottomBox.style.height = ENEMY_HEIGHT + 100 + "px"
    bottomBox.style.width = GAME_WIDTH + 100 + "px"
    bottomBox.style.background = "black"
    root.append(bottomBox)
@@ -50,6 +50,7 @@ let incrementEnemyCount = () => {
    if (ENEMY_COUNT === 10) return;
    ENEMY_COUNT++
    updateEnemyCountLabel();
+   console.log(`Enemy count: ${ENEMY_COUNT}`)
 }
 
 let showStartMenu = () => {
