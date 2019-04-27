@@ -19,7 +19,7 @@ class Player {
       //Layering
       this.domElement.style.zIndex = "10"
       this.direction = "R";
-      this.domElement.className = "rotating"
+      this.domElement.className = "rotating floating"
 
 
 

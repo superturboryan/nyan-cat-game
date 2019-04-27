@@ -25,6 +25,18 @@
 	}
 }
 
+@keyframes floatH {
+	0% {
+      transform: translatex(0px);
+	}
+	50% {
+      transform: translatex(-15px);
+	}
+	100% {
+      transform: translatex(0px);
+	}
+}
+
 @keyframes rotate {
 	0% {
       transform: rotate(0deg);
@@ -80,6 +92,12 @@ body {
 .floating {
    transform: translatey(0px);
    animation: float2 2s ease-in-out infinite;
+   background-color: transparent;
+}
+
+.floatingH {
+   transform: translatex(0px);
+   animation: floatH 3s ease-in-out infinite;
    background-color: transparent;
 }
 

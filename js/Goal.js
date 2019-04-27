@@ -17,6 +17,7 @@ class Goal {
       this.domElement.style.zIndex = "9"
       //Make it float!
       this.domElement.className = "floating"
+      //Assign a random value
       this.value = Math.round(Math.random() * 2)
       //Player img source
       if (this.value === 2) {

@@ -9,17 +9,13 @@ let menu = document.getElementById('startMenu')
 let startButton = document.getElementById("startButton")
 let instructionsButton = document.getElementById("instructionsButton")
 
-let themeMusic = new Audio('sounds/dreaming.mp3')
+let themeMusic = new Audio('sounds/clash.mp3')
 
-// let startLabel = new Text(mainDiv, 250, ENEMY_HEIGHT + (GAME_HEIGHT / 2), 60)
+let scoreLabel = new Text(mainDiv, 900, 25)
 
-// startLabel.update("Press space to begin!")
+scoreLabel.update(`BAC: Sober`)
 
-let scoreLabel = new Text(mainDiv, 1000, 20, 30)
-
-scoreLabel.update(`Score: ${gameEngine.score}`)
-
-let timeLabel = new Text(mainDiv, 1250, 20, 30);
+let timeLabel = new Text(mainDiv, 1250, 25);
 
 let bubbleSound = () => {
    let sound = new Audio('sounds/bubbles.mp3')

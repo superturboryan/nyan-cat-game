@@ -8,6 +8,7 @@ class Enemy {
       this.x = enemySpot * ENEMY_WIDTH
       this.y = this.direction ? -ENEMY_HEIGHT : GAME_HEIGHT + ENEMY_HEIGHT
       this.domElement = document.createElement("img")
+      this.domElement.className = "floatingH"
       if (this.type === 0) {
          this.domElement.src = "images/octopus-up2.png"
       }

@@ -61,7 +61,12 @@ class Engine {
          else {
             this.score++
          }
-         scoreLabel.update(`Score: ${gameEngine.score}`)
+         if (gameEngine.score === 3) {
+            scoreLabel.update(`BAC: Legal limit!`)
+         }
+         else {
+            scoreLabel.update(`BAC: ${(gameEngine.score * 0.025).toFixed(2)}`)
+         }
 
          if (this.score % 10 === 0) {
             new Audio('sounds/hacker.mp3').play()
@@ -115,7 +120,7 @@ class Engine {
    restartStats = () => {
       this.startTime = new Date();
       this.score = 0;
-      scoreLabel.update(`Score: ${gameEngine.score}`)
+      scoreLabel.update(`BAC: Sober`)
    }
 
    resetPlayer = () => {
